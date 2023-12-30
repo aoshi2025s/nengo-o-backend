@@ -1,7 +1,10 @@
 from fastapi import FastAPI
 
-app = FastAPI()
+from api.routers import question
 
-@app.get("/hello")
+app = FastAPI()
+app.include_router(question.router)
+
+@app.get("/hello",tags=["root"])
 async def hello():
     return {"message": "Hello World"}
